@@ -1,0 +1,76 @@
+:root {
+    --panel-bg: #0c1016;
+    --panel-bg-2: #141a22;
+    --row-border: #1c222b;
+    --tab-border: #232a35;
+    --text-main: #e7ebf0;
+    --text-dim: #8a919c;
+    --text-faint: #6b7480;
+    --accent-cyan: #4dd4e6;
+    --accent-red: #c0362f;
+    --accent-amber: #e3b23c;
+}
+
+.gradio-container {
+    background: var(--panel-bg) !important;
+    font-family: 'Segoe UI', system-ui, sans-serif !important;
+}
+
+.gradio-container h1 {
+    color: var(--text-main) !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+}
+
+.gradio-container .prose p {
+    color: var(--text-dim) !important;
+    font-size: 13px !important;
+}
+
+label span {
+    color: var(--text-dim) !important;
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: lowercase !important;
+}
+
+#filename-box textarea,
+#script-box textarea,
+#voice-dropdown,
+#voice-dropdown input {
+    background: var(--panel-bg-2) !important;
+    color: var(--text-main) !important;
+    border: 0.5px solid var(--row-border) !important;
+    border-radius: 8px !important;
+}
+
+#speed-slider input[type="range"]{
+    accent-color: var(--accent-cyan) !important;
+}
+
+button.primary, #generate-btn {
+    background: var(--accent-cyan) !important;
+    color: #04232a !important;
+    border: none !important;
+    font-weight: 500 !important;
+}
+
+button.primary:hover, #generate-btn:hover {
+    opacity: 0.9;
+}
+
+button.secondary, #clear-btn {
+    background: var(--panel-bg-2) !important;
+    color: var(--text-dim) !important;
+    border: 0.5px solid var(--row-border) !important;
+}
+
+#audio-output {
+    background: var(--panel-bg-2) !important;
+    border: 0.5px solid var(--row-border) !important;
+    border-radius: 8px !important;
+}
+
+footer { 
+    display:none !important; 
+}
