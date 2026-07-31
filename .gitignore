@@ -4,3 +4,4 @@ __pycache__/
 *.wav
 *.mp3
 .gradio/
+PROJECT_NOTES.md
