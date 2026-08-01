@@ -1,6 +1,7 @@
 from pedalboard import Pedalboard, Reverb
 from pedalboard.io import AudioFile
 
+# This function applies a reverb effect to an audio file by using the Reverb effect from the pedalboard library.
 def apply_reverb(input_file, output_file, room_size=0.5, damping=0.5, wet_level=0.3):
     with AudioFile(input_file) as f:
         audio = f.read(f.frames)

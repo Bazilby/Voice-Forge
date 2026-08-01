@@ -1,6 +1,7 @@
 from pedalboard import Pedalboard, Reverb, LowpassFilter
 from pedalboard.io import AudioFile
 
+# This function applies a tunnel effect to an audio file by using a combination of reverb and lowpass filter.
 def apply_tunnel(input_file, output_file):
 
     with AudioFile(input_file) as f:
