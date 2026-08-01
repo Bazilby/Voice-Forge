@@ -3,19 +3,22 @@ import soundfile as sf
 import gradio as gr
 import time
 import os
-from characters import CHARACTERS
+from data.characters import CHARACTERS
 import json
-
-with open("style.css", "r") as f:
-    CSS =f.read()
-
-with open("voices.json", "r") as f:
-    VOICE_DATA =json.load(f)
-
-pipeline = KPipeline(lang_code="a")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(BASE_DIR, "Output")
+
+CSS_FILE = os.path.join(BASE_DIR, "ui", "style.css")
+VOICES_FILE = os.path.join(BASE_DIR, "data", "voices.json")
+
+with open(CSS_FILE, "r") as f:
+    CSS = f.read()
+
+with open(VOICES_FILE, "r") as f:
+    VOICE_DATA =json.load(f)
+
+pipeline = KPipeline(lang_code="a")
 
 def generate(filename, text, character,  speed):
 
@@ -81,7 +84,7 @@ def save_voice_info(character, rating, notes):
     VOICE_DATA[character]["rating"] = int(rating) if rating else 0
     VOICE_DATA[character]["notes"] = notes
 
-    with open("voices.json", "w") as f:
+    with open(VOICES_FILE, "w") as f:
         json.dump(
             VOICE_DATA,
             f,
