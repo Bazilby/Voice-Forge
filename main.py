@@ -5,6 +5,8 @@ import time
 import os
 from data.characters import CHARACTERS
 import json
+from audio.procecssor import apply_effects
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(BASE_DIR, "Output")
@@ -20,9 +22,20 @@ with open(VOICES_FILE, "r") as f:
 
 pipeline = KPipeline(lang_code="a")
 
-def generate(filename, text, character,  speed):
+def generate(filename, text, character,  speed, reverb, tunnel, radio, eq):
 
     character_data = CHARACTERS[character]
+
+    effects = []
+
+    if reverb:
+        effects.append("reverb")
+    if tunnel:
+        effects.append("tunnel")
+    if radio:
+        effects.append("radio")
+    if eq:
+        effects.append("eq")
 
     try:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -59,6 +72,12 @@ def generate(filename, text, character,  speed):
             final_audio,
             24000
         )
+
+        if effects:
+            filepath = apply_effects(
+                filepath,
+                effects
+            )
 
         return filepath
     
@@ -127,6 +146,34 @@ with gr.Blocks(css=CSS) as app:
                 elem_id="speed-slider"
             )
 
+            with gr.Group():
+
+                gr.Markdown("### Voice Effects")
+
+                reverb_checkbox = gr.Checkbox(
+                    label="Reverb",
+                    value=False,
+                    elem_id="reverb-checkbox"
+                )
+
+                tunnel_checkbox = gr.Checkbox(
+                    label="Tunnel",
+                    value=False,
+                    elem_id="tunnel-checkbox"
+                )
+
+                radio_checkbox = gr.Checkbox(
+                    label="Radio",
+                    value=False,
+                    elem_id="radio-checkbox"
+                )
+
+                eq_checkbox = gr.Checkbox(
+                    label="Equalizer",
+                    value=False,
+                    elem_id="eq-checkbox"
+                )
+
             generate_btn = gr.Button(
                 "Generate",
                 elem_id="generate-btn",
@@ -184,7 +231,11 @@ with gr.Blocks(css=CSS) as app:
             filename_box,
             script_box,
             voice_dropdown,
-            speed_slider
+            speed_slider,
+            reverb_checkbox,
+            tunnel_checkbox,
+            radio_checkbox,
+            eq_checkbox
         ],
         outputs=audio_output
     )

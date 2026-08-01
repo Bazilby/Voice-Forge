@@ -5,3 +5,4 @@ __pycache__/
 *.mp3
 .gradio/
 PROJECT_NOTES.md
+test_effects.py
