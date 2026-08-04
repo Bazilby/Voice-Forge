@@ -3,9 +3,11 @@ import soundfile as sf
 import gradio as gr
 import time
 import os
-from data.characters import CHARACTERS
 import json
-from audio.procecssor import apply_effects
+
+from data.characters import CHARACTERS
+from audio.processor import apply_effects
+from ui.layout import create_ui
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -271,5 +273,8 @@ with gr.Blocks(css=CSS) as app:
         outputs=save_status
     )
 
+
+
+app = create_ui()
 
 app.launch()

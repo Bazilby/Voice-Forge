@@ -1,6 +1,21 @@
 from pedalboard import (Pedalboard, Compressor, Distortion, HighpassFilter, LowpassFilter)
 from pedalboard.io import AudioFile
 
+# check radio effect is working
+def check_radio():
+    try:
+        return {
+            "name":  "RADIO EFFECT",
+            "status": "OK"
+        }
+
+    except Exception as radioError:
+
+        return{
+            "name": "REVERB EFFECT",
+            "status": "FAIL",
+            "error": str(radioError)
+        }
 
 # This function applies a radio effect to an audio file by using a combination of highpass and lowpass filters, as well as a compressor and distortion effect.
 def apply_radio(input_file, output_file):

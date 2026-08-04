@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+    min-height: 100%;
+    background: #000;
+}
+
+@keyframes  crtPulse{
+    0%, 100% {
+        text-shadow:
+            0 0 4px rgba(255, 180, 50, 0.4),
+            0 0 12px rgba(255, 180, 50, 0.15);
+    }
+
+    50%  {
+        text-shadow:
+        0 0 6px rgba(255, 180, 50, 0.7),
+        0 0 18px rgba(255, 180, 50, 0.25);
+    }
+}
+
+.crt-text {
+    animation: crtPulse 3s ease-in-out infinite;
+}
+
+.crt-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.crt-scroll::-webkit-scrollbar-track{
+    background: #090a07;
+    border-left: 1px solid #292b24;
+}
+
+.crt-scroll::-webkit-scrollbar-thumb{
+    background: #554a22;
+    border: 2px solid #090a07;
+    border-radius: 4px;
+}
+
+.crt-scroll::-webkit-scrollbar-thumb:hover{
+    background: #8a7025;
+}
+
+.crt-screen  {
+    position: relative;
+    overflow: hidden; 
+}
+
+.crt-screen textarea {
+    caret-color: #fbbf24;
+}
+
+.crt-screen textarea:focus {
+    text-shadow:
+    0 0 5px rgba(255,180,50,0.5),
+    0 0 15px rgba(255,180,50,0.2);
+}
+
+.crt-screen::after {
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+    pointer-events: none;
+}
+
+.crt-cursor {
+    animation: blink is infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
